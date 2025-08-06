@@ -9,5 +9,5 @@ jobs:
     steps: 
     - name: Git Clone
       uses: actions/checkout@v4
-    - name: Run LS command
-      run: ls 
+    - name: init
+      run: terraform init
