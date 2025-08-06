@@ -1,0 +1,13 @@
+name: Test
+on:
+  push:
+  branches: [ "main" ]
+
+jobs: 
+  deploy: 
+    runs-on: ubuntu-latest
+    steps: 
+    - name: Git Clone
+      uses: actions/checkout@v4
+    - name: Run LS command
+      run: ls -la
