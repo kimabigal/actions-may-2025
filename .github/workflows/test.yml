@@ -10,4 +10,4 @@ jobs:
     - name: Git Clone
       uses: actions/checkout@v4
     - name: Run LS command
-      run: ls -la
+      run: ls 
