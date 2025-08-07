@@ -10,12 +10,38 @@ on:
         - Apply
         - Destroy
 
+      region: 
+        description: "Provide region"
+        required: true
+        type: choice
+        options:
+        - us-east-1
+        - us-east-2
+
+
+      ami_id:
+        description: "provide AMI ID"
+        required: true
+
+      instance_type:
+        description: " provide Instance Type"
+        required: true
+
+
 jobs: 
   deploy: 
     runs-on: ubuntu-latest
     steps: 
     - name: Git Clone
       uses: actions/checkout@v4
+
+    - name: Create tfvars file
+      run: 
+        cat <<EOF > terraform.tfvars
+        ami_id = "${{ inputs.ami_id }}"
+        instance_type = "${{ inputs.instance_type }}"
+        region = "${{ inputs.region }}"
+        EOF
 
     - name: Setup terraform
       uses: hashicorp/setup-terraform@v3
@@ -39,4 +65,4 @@ jobs:
           terraform apply -auto-approve
         else 
           terraform destroy -auto-approve
-        fi
+        fi 
