@@ -5,6 +5,10 @@ on:
       action: 
         description: "Select your choice"
         required: true
+        type: choice
+        options: 
+        - Apply
+        - Destroy
 
 jobs: 
   deploy: 
